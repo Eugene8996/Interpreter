@@ -2,36 +2,30 @@
 #include <string.h>
 #include <stdlib.h>
 
-//#include "read.c"
-//#include "pars.c"
+#include "launch.h"
 
-char *lsh_read_line(void);
-char **lsh_split_line(char *line);
+char *read_line(void);
+char **split_line(char *line);
+int execute(char **args);
+
 
 int main()
 {
 	char *line;
 	char **args;
-	int status = 0;
-	int i = 0;
+	int status = 1;
 	char c;
 
 	printf("Enter the command\n");
-	printf("Help to see commands\n");
 
 	do {
 		printf("> ");
-		line = lsh_read_line();
-		printf("%s", line);
-		args = lsh_split_line(line);
-		//status = lsh_execute(args);
-		
-		i = 0;
-		//args[i] = NULL;
-		scanf("%d", &status);
-		//status = getchar();
-		while ((c = getchar()) != '\n' && c != EOF);
+		line = read_line();
+		args = split_line(line);
+		status = execute(args);
+
+		//while ((c = getchar()) != '\n' && c != EOF);
 		free(line);
-		//free(args);
+		free(args);
 	} while (status);
 }

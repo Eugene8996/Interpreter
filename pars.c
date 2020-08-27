@@ -7,14 +7,14 @@
 
 
 
-char **lsh_split_line(char *line)
+char **split_line(char *line)
 {
   	int bufsize = LSH_TOK_BUFSIZE, position = 0;
   	char **tokens = malloc(bufsize * sizeof(char*));
 	char *token;
 
   	if (!tokens) {
-		fprintf(stderr, "lsh: ошибка выделения памяти\n");
+		fprintf(stderr, "split_line: ошибка выделения памяти\n");
 		exit(EXIT_FAILURE);
   	}
 
@@ -27,7 +27,7 @@ char **lsh_split_line(char *line)
 		  	bufsize += LSH_TOK_BUFSIZE;
 		  	tokens = realloc(tokens, bufsize * sizeof(char*));
 		  	if (!tokens) {
-				fprintf(stderr, "lsh: ошибка выделения памяти\n");
+				fprintf(stderr, "split_line: ошибка выделения памяти\n");
 				exit(EXIT_FAILURE);
 		  	}
 		}
